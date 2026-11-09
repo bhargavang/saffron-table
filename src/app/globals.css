@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Brand palette: warm spice tones on cream */
+@theme {
+  --color-cream: #fbf6ee;
+  --color-sand: #f2e8d8;
+  --color-ink: #211a16;
+  --color-cocoa: #241a15;
+  --color-cocoa-light: #33251e;
+  --color-muted: #6e6057;
+  --color-saffron: #eaa53f;
+  --color-saffron-dark: #c98420;
+  --color-chili: #b8432c;
+  --color-leaf: #56733d;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
