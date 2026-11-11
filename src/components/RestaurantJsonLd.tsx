@@ -12,7 +12,7 @@ export function RestaurantJsonLd() {
     name: site.name,
     description: site.description,
     url,
-    image: photos.thali.src,
+    image: `${photos.thali.src}?auto=format&fit=max&w=1200&q=80`,
     telephone: site.phone.href.replace("tel:", ""),
     servesCuisine: ["Indian", "North Indian", "Tandoor"],
     priceRange: "₹₹",

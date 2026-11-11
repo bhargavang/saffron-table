@@ -32,16 +32,9 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   images: {
-    // Only Unsplash photos, and only at the size set in src/lib/photos.ts.
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/photo-*",
-        search: "?auto=format&fit=max&w=1800&q=80",
-      },
-    ],
-    formats: ["image/avif", "image/webp"],
+    // Unsplash's CDN resizes the photos; see src/lib/image-loader.ts.
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
   },
   async headers() {
     return [

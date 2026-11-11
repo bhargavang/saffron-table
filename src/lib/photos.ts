@@ -14,15 +14,9 @@ export type Photo = {
   page: string;
 };
 
-/**
- * Asks Unsplash's CDN for a 1800px JPEG/WebP instead of the multi-megabyte
- * original. Next.js then resizes it further for each screen. The query string
- * must match `images.remotePatterns` in next.config.ts.
- */
-export const UNSPLASH_QUERY = "?auto=format&fit=max&w=1800&q=80";
-
+/** Sizing is added per screen by src/lib/image-loader.ts. */
 function unsplash(id: string) {
-  return `https://images.unsplash.com/photo-${id}${UNSPLASH_QUERY}`;
+  return `https://images.unsplash.com/photo-${id}`;
 }
 
 export const photos = {
