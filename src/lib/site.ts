@@ -97,6 +97,12 @@ export const site = {
   /** Shown in the slim banner at the top. Set `show: false` for a real client. */
   demo: {
     show: true,
+    /**
+     * Public login for the demo's /admin page, shown on the sign-in screen.
+     * Used only while `show` is true and neither ADMIN_PASSWORD nor
+     * ADMIN_PASSWORD_HASH is set. Never put a real password here.
+     */
+    adminPassword: "saffron-demo",
     builtBy: "Bhargav Angadi",
     contactUrl: `https://wa.me/${BUILDER_WHATSAPP}?text=${encodeURIComponent(
       "Hi Bhargav, I saw the Saffron Table demo. I'd like a website like this.",

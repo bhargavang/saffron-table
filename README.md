@@ -105,7 +105,7 @@ Go to http://localhost:3000/admin and sign in with:
 
 - **Password:** `saffron-demo`
 
-That password is set in `.env.example`. Change it before putting the site anywhere public.
+It's set in `.env.example`, and the live demo uses the same one. While the demo banner is on (`demo.show` in `src/lib/site.ts`) and no `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH` is set, the site falls back to this public demo password and shows it on the sign-in page. Setting a real password, or turning the demo off, switches that off.
 
 ## Configuration
 
@@ -116,7 +116,7 @@ All settings are environment variables. `.env.example` lists them with notes.
 | `ADMIN_PASSWORD` | Admin password, fine for local use |
 | `ADMIN_PASSWORD_HASH` | Use instead of `ADMIN_PASSWORD` in production. Create it with `npm run hash-password -- "your-password"` |
 | `ADMIN_SESSION_SECRET` | Optional key for signing admin sessions |
-| `ADMIN_LOGIN_HINT` | Optional text under the sign-in form, e.g. the demo password |
+| `ADMIN_LOGIN_HINT` | Optional text under the sign-in form |
 | `DATABASE_URL` | Postgres connection string. Leave empty to use the local JSON file. Tables are created on first use. |
 | `RESEND_API_KEY` | Sends real emails through Resend. Leave empty to print them instead. |
 | `EMAIL_FROM` | Sender, e.g. `Saffron Table <bookings@your-domain.com>` |
@@ -127,14 +127,14 @@ All settings are environment variables. `.env.example` lists them with notes.
 
 1. Import the repo into Vercel.
 2. Create a Postgres database on Neon or Supabase and set `DATABASE_URL` to its pooled connection string.
-3. Set `ADMIN_PASSWORD_HASH`, `OWNER_EMAIL` and, for real emails, `RESEND_API_KEY` and `EMAIL_FROM`.
+3. Set `ADMIN_PASSWORD_HASH` (and `demo.show` to `false`), `OWNER_EMAIL` and, for real emails, `RESEND_API_KEY` and `EMAIL_FROM`.
 4. Deploy.
 
 Without `DATABASE_URL`, Vercel can only keep bookings in temporary storage that gets wiped, which is fine for a quick look but not for real use.
 
 ## Reusing it for a real restaurant
 
-1. Change the details in `src/lib/site.ts` and set `demo.show` to `false` to remove the demo banner.
+1. Change the details in `src/lib/site.ts` and set `demo.show` to `false`. That removes the demo banner and the public demo login, so set `ADMIN_PASSWORD_HASH` before going live.
 2. Replace the menu in `src/lib/menu.ts`.
 3. Swap the photos in `src/lib/photos.ts` for the restaurant's own (files in `public/` work too).
 4. Adjust the booking rules in `site.booking`: seats per slot, the largest group that can book online, how far ahead people can book.

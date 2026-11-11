@@ -1,13 +1,16 @@
 import Link from "next/link";
 
 import { Logo } from "@/components/Logo";
+import { demoPasswordInUse } from "@/lib/admin-session";
 
 import { LoginForm } from "./LoginForm";
 
 export const metadata = { title: "Staff sign-in" };
 
 export default function LoginPage() {
-  const hint = process.env.ADMIN_LOGIN_HINT;
+  const demoPassword = demoPasswordInUse();
+  const hint =
+    process.env.ADMIN_LOGIN_HINT || (demoPassword ? `Demo password: ${demoPassword}` : undefined);
 
   return (
     <main className="relative flex flex-1 items-center justify-center overflow-hidden bg-cocoa px-4 py-16 text-cream">

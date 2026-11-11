@@ -1,5 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
+import { site } from "./site";
+
 /**
  * Signed session token for the admin: "<expiry>.<signature>". Nothing is kept
  * in server memory, so any number of server instances can check it.
@@ -9,12 +11,23 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 export const ADMIN_COOKIE = "st_admin";
 export const SESSION_SECONDS = 12 * 60 * 60;
 
+/**
+ * The public demo password from site.ts, when it applies: only while the
+ * demo banner is on and no real password has been configured. Setting
+ * ADMIN_PASSWORD or ADMIN_PASSWORD_HASH, or turning the demo off, disables it.
+ */
+export function demoPasswordInUse(): string | null {
+  if (!site.demo.show) return null;
+  if (process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD_HASH) return null;
+  return site.demo.adminPassword;
+}
+
 function secret(): string | null {
   return (
     process.env.ADMIN_SESSION_SECRET ||
     process.env.ADMIN_PASSWORD_HASH ||
     process.env.ADMIN_PASSWORD ||
-    null
+    demoPasswordInUse()
   );
 }
 
