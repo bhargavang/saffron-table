@@ -169,10 +169,15 @@ export function BookingForm() {
 
         <div className="mt-5 grid gap-6 sm:grid-cols-[1fr_auto]">
           <div>
-            <span id="date-label" className="text-sm font-semibold">
+            <span id="date-label" className="block text-sm font-semibold">
               Date
             </span>
             <div role="group" aria-labelledby="date-label" className="mt-2 flex flex-wrap gap-2">
+              {/* Same-size placeholders until the browser knows today's date, so nothing jumps */}
+              {quickDates.length === 0 &&
+                ["w-[4.6rem]", "w-[6.6rem]", "w-[4.6rem]", "w-[4.6rem]", "w-[4.6rem]", "w-[4.6rem]"].map((w, i) => (
+                  <span key={i} aria-hidden="true" className={`h-[3.25rem] rounded-xl border border-sand bg-white/60 ${w}`} />
+                ))}
               {quickDates.map((date, i) => {
                 const selected = values.date === date;
                 const closed = slotsFor(date).length === 0;
@@ -182,7 +187,6 @@ export function BookingForm() {
                     type="button"
                     disabled={closed}
                     aria-pressed={selected}
-                    aria-label={`${formatDate(date, { long: true })}${i === 0 ? ", today" : i === 1 ? ", tomorrow" : ""}${closed ? ", closed" : ""}`}
                     onClick={() => set("date", date)}
                     data-field={i === 0 ? "date" : undefined}
                     className={`rounded-xl border px-3 py-2 text-left text-sm transition-colors disabled:opacity-40 ${
@@ -195,6 +199,7 @@ export function BookingForm() {
                       {i === 0 ? "Today" : i === 1 ? "Tomorrow" : formatDate(date).split(",")[0]}
                     </span>
                     <span className="font-semibold">{formatDate(date).split(", ")[1]}</span>
+                    {closed && <span className="sr-only">, closed</span>}
                   </button>
                 );
               })}
@@ -218,10 +223,10 @@ export function BookingForm() {
           </div>
 
           <div>
-            <span id="guests-label" className="text-sm font-semibold">
+            <span id="guests-label" className="block text-sm font-semibold">
               Guests
             </span>
-            <div className="mt-2 flex items-center gap-1 rounded-xl border border-sand bg-white p-1">
+            <div className="mt-2 inline-flex items-center gap-1 rounded-xl border border-sand bg-white p-1">
               <StepButton
                 label="Fewer guests"
                 disabled={Number(values.guests) <= 1}
@@ -252,7 +257,7 @@ export function BookingForm() {
         </div>
 
         <div className="mt-6">
-          <span id="time-label" className="text-sm font-semibold">
+          <span id="time-label" className="block text-sm font-semibold">
             Time
           </span>
           {!isIsoDate(values.date) ? (

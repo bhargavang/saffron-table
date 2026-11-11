@@ -62,15 +62,15 @@ export function Hero() {
 
           <dl className="mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-7 text-sm">
             <div>
-              <dt className="text-cream/55">Lunch</dt>
+              <dt className="text-cream/70">Lunch</dt>
               <dd className="mt-1 font-medium">From 12 pm</dd>
             </div>
             <div>
-              <dt className="text-cream/55">Dinner</dt>
+              <dt className="text-cream/70">Dinner</dt>
               <dd className="mt-1 font-medium">From 7 pm</dd>
             </div>
             <div>
-              <dt className="text-cream/55">Booking</dt>
+              <dt className="text-cream/70">Booking</dt>
               <dd className="mt-1 font-medium">Online, 24/7</dd>
             </div>
           </dl>

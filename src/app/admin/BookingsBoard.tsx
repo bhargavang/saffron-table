@@ -95,7 +95,7 @@ export function BookingsBoard({ bookings, today }: { bookings: Booking[]; today:
         <Stat
           label="Needs a reply"
           value={counts.pending}
-          detail={counts.pending === 1 ? "request waiting" : "requests waiting"}
+          detail="waiting"
           highlight={counts.pending > 0}
         />
         <Stat

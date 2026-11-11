@@ -72,12 +72,11 @@ export function Footer() {
           <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-saffron">
             Reservations
           </h2>
-          <p className="mt-4 text-sm text-cream/80">
-            <a href={site.phone.href} className="hover:underline">
+          <p className="mt-3 text-sm text-cream/80">
+            <a href={site.phone.href} className="block py-1 hover:underline">
               {site.phone.display}
             </a>
-            <br />
-            <a href={`mailto:${site.email}`} className="break-all hover:underline">
+            <a href={`mailto:${site.email}`} className="block break-all py-1 hover:underline">
               {site.email}
             </a>
           </p>

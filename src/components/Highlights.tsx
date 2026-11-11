@@ -30,7 +30,7 @@ export function Highlights() {
           <ol className="grid gap-8 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-sand">
             {highlights.map((item, i) => (
               <li key={item.title} className="sm:px-6 sm:first:pl-0 sm:last:pr-0">
-                <span className="font-display text-4xl font-light italic text-saffron-dark">
+                <span className="font-display text-4xl font-light italic text-[#9a5f14]">
                   0{i + 1}
                 </span>
                 <h3 className="mt-3 font-display text-xl font-semibold">{item.title}</h3>
