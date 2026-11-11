@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Logo } from "@/components/Logo";
@@ -8,7 +9,9 @@ import { site } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const close = () => setOpen(false);
+  const isCurrent = (href: string) => href === pathname;
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-cocoa/95 text-cream backdrop-blur supports-[backdrop-filter]:bg-cocoa/85">
@@ -21,7 +24,8 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-cream/75 transition-colors hover:text-cream"
+              aria-current={isCurrent(item.href) ? "page" : undefined}
+              className="text-sm font-medium text-cream/75 transition-colors hover:text-cream aria-[current=page]:text-saffron"
             >
               {item.label}
             </Link>
@@ -74,7 +78,8 @@ export function Header() {
                 <Link
                   href={item.href}
                   onClick={close}
-                  className="block border-b border-white/10 py-3.5 text-base font-medium text-cream/85"
+                  aria-current={isCurrent(item.href) ? "page" : undefined}
+                  className="block border-b border-white/10 py-3.5 text-base font-medium text-cream/85 aria-[current=page]:text-saffron"
                 >
                   {item.label}
                 </Link>

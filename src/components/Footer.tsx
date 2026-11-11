@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Logo } from "@/components/Logo";
-import { site } from "@/lib/site";
+import { formatRange, site } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -54,12 +54,14 @@ export function Footer() {
           </h2>
           <dl className="mt-4 space-y-3 text-sm">
             {site.hours.map((h) => (
-              <div key={h.days}>
-                <dt className="font-medium text-cream">{h.days}</dt>
+              <div key={h.label}>
+                <dt className="font-medium text-cream">{h.label}</dt>
                 <dd className="text-cream/70">
-                  Lunch {h.lunch}
-                  <br />
-                  Dinner {h.dinner}
+                  {h.services.map((s) => (
+                    <span key={s.name} className="block">
+                      {s.name} {formatRange(s.open, s.close)}
+                    </span>
+                  ))}
                 </dd>
               </div>
             ))}
@@ -89,7 +91,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-cream/50 sm:flex-row sm:justify-between sm:px-6">
+        {/* Extra bottom space so the floating WhatsApp button never covers this row */}
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 pb-24 pt-5 text-xs text-cream/50 sm:flex-row sm:justify-between sm:px-6">
           <p>© {site.name}. A demo project, not a real restaurant.</p>
           <p>
             Website by{" "}

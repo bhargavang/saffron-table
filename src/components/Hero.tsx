@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { ThaliIllustration } from "@/components/ThaliIllustration";
+import { photos } from "@/lib/photos";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -16,13 +17,13 @@ export function Hero() {
         className="pointer-events-none absolute -left-40 -top-40 h-96 w-96 rounded-full bg-chili/25 blur-3xl"
       />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pb-24 pt-14 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:pb-28 md:pt-20">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-20 pt-12 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:gap-14 md:pb-28 md:pt-20">
         <div>
           <p className="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-saffron sm:text-xs sm:tracking-[0.16em]">
             {site.tagline} · Indiranagar
           </p>
 
-          <h1 className="mt-6 font-display text-[2.75rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             Slow-cooked flavours,{" "}
             <em className="font-normal text-saffron">served with warmth.</em>
           </h1>
@@ -35,7 +36,7 @@ export function Hero() {
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-saffron-dark"
+              className="inline-flex items-center gap-2 rounded-full bg-saffron px-5 py-3.5 font-semibold text-ink transition-colors hover:bg-saffron-dark sm:px-7"
             >
               Book a table
               <svg
@@ -52,8 +53,8 @@ export function Hero() {
               </svg>
             </Link>
             <Link
-              href="/#menu"
-              className="inline-flex items-center rounded-full border border-white/25 px-7 py-3.5 font-semibold text-cream transition-colors hover:border-cream"
+              href="/menu"
+              className="inline-flex items-center rounded-full border border-white/25 px-5 py-3.5 font-semibold text-cream transition-colors hover:border-cream sm:px-7"
             >
               View the menu
             </Link>
@@ -75,11 +76,21 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[440px]">
-          <ThaliIllustration className="w-full drop-shadow-[0_30px_50px_rgba(0,0,0,0.45)] motion-safe:animate-[spin_120s_linear_infinite]" />
-          <div className="absolute -bottom-6 left-0 rounded-2xl bg-cream px-5 py-4 text-ink shadow-xl sm:-left-6">
+        <div className="relative mx-auto w-full max-w-[420px] pb-6">
+          {/* Arched frame, a nod to the jharokha windows of old Indian houses */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-3xl border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.45)]">
+            <Image
+              src={photos.thali.src}
+              alt={photos.thali.alt}
+              fill
+              preload
+              sizes="(min-width: 768px) 420px, 92vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute bottom-0 left-0 rounded-2xl bg-cream px-5 py-4 text-ink shadow-xl sm:-left-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-chili">
-              Chef&apos;s special
+              Lunch special
             </p>
             <p className="mt-1 font-display text-lg font-semibold">
               Saffron Table Thali
