@@ -106,9 +106,13 @@ export const site = {
 
 export type Site = typeof site;
 
-/** Public URL of the site, used for metadata, the sitemap and email links. */
+/**
+ * Public URL of the site, used for metadata, the sitemap and email links.
+ * Server-side only, so it's read at run time (a NEXT_PUBLIC_ variable would
+ * be frozen into the build).
+ */
 export function siteUrl(): string {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  const explicit = process.env.SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   if (vercel) return `https://${vercel}`;
