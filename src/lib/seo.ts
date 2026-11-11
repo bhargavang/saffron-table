@@ -27,6 +27,9 @@ export function pageMetadata({
       siteName: site.name,
       locale: "en_IN",
       type: "website",
+      // A page's openGraph replaces the root one entirely, so point at the
+      // shared image from app/opengraph-image.tsx again.
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name} restaurant` }],
     },
   };
 }
