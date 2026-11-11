@@ -6,7 +6,9 @@ A restaurant website with online table booking. Guests pick a time, the restaura
 
 > **This is a portfolio demo.** Saffron Table is a made-up restaurant in Bengaluru. I built the site to show restaurant and café owners the kind of thing I can make for them. The food and interior photos are free stock photos from Unsplash ([credits below](#photo-credits)), the address is fictional, and the phone and WhatsApp links reach me, not a restaurant.
 
-**Live demo:** not deployed yet.
+**Live demo:** https://saffron-table-one.vercel.app (bookings admin at [/admin](https://saffron-table-one.vercel.app/admin), password `saffron-demo`)
+
+The live demo has no database attached yet, so bookings made there are kept in temporary storage and cleared from time to time. The sample bookings come back on their own.
 
 ## What it does
 
@@ -160,7 +162,7 @@ src/
 ## How I tested it
 
 - `npm run build`, TypeScript and ESLint all pass.
-- I went through the booking flow and the admin page in Chrome at phone and desktop sizes.
+- I went through the booking flow and the admin page in Chrome at phone and desktop sizes, locally and on the live Vercel deployment.
 - I ran the Postgres storage against [PGlite](https://pglite.dev) (Postgres compiled to WebAssembly) on my machine: tables were created on the first request, sample data was added, bookings and status changes were saved, and a booking that would have overfilled a slot was turned away. With the database stopped, the pages kept loading and the booking form showed the phone and WhatsApp fallback.
 - Not tested yet: a hosted Neon or Supabase database, and sending real email through Resend.
 
